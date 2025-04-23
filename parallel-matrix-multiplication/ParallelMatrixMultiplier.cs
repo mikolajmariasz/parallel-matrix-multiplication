@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace parallel_matrix_multiplication
 {
-    public class MatrixMultiplier
+    public class ParallelMatrixMultiplier
     {
         public static Matrix Multiply(Matrix a, Matrix b, int maxThreads = 1)
         {
@@ -16,7 +16,7 @@ namespace parallel_matrix_multiplication
             Matrix result = new Matrix(a.Rows, b.Cols);
             var options = new ParallelOptions { MaxDegreeOfParallelism = maxThreads };
 
-            Parallel.For(0, a.Rows, options, i => // dzielenie po wierszach macierzy a między dostępne wątki
+            Parallel.For(0, a.Rows, options, i => // dzielenie wierszy macierzy między dostępne wątki
             {
                 for (int j = 0; j < b.Cols; j++)
                 {
